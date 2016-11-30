@@ -1349,7 +1349,7 @@ pre red { color: red;
       <pre  class="schema turtle">:stops-2015-05-05 
         a dcat:Dataset ;
         dct:title "Bus stops of MyCity" ;
-        dct:identifier &lt;http://dx.doi.org/10.0902/1975.16&gt;^^xsd:anyURI;
+        dct:identifier "&lt;http://dx.doi.org/10.0902/1975.16&gt;"^^xsd:anyURI;
         dct:issued "2015-05-05"^^xsd:date ;
         pav:version "1.0" ;
         dct:publisher :transport-agency-mycity ;
@@ -1359,79 +1359,124 @@ pre red { color: red;
         dct:created "2015-05-05"^^xsd:date 
         .
       </pre>
-      <pre  class="schema json-ld">{
-  "@id" : ":stops-2015-05-05",
-  "@type" : "dcat:Dataset",
-  "version" : "1.0",
-  "created" : "2015-05-05",
-  "creator" : ":bus-association-mycity",
-  "identifier" : "http://dx.doi.org/10.0902/1975.16",
-  "issued" : "2015-05-05",
-  "publisher" : ":transport-agency-mycity",
-  "title" : "Bus stops of MyCity",
-  "fundedBy" : ":bus-association-mycity",
-  "hasDistributor" : ":transport-agency-mycity",
-  "@context" : {
-    "identifier" : {
-      "@id" : "http://purl.org/dc/terms/identifier",
-      "@type" : "@id"
-    },
-    "created" : {
-      "@id" : "http://purl.org/dc/terms/created",
-      "@type" : "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "fundedBy" : {
-      "@id" : "http://rdf-vocabulary.ddialliance.org/discovery#fundedBy",
-      "@type" : "@id"
-    },
-    "publisher" : {
-      "@id" : "http://purl.org/dc/terms/publisher",
-      "@type" : "@id"
-    },
-    "hasDistributor" : {
-      "@id" : "http://www.w3.org/ns/duv#hasDistributor",
-      "@type" : "@id"
-    },
-    "title" : "http://purl.org/dc/terms/title",
-    "version" : "http://purl.org/pav/version",
-    "issued" : {
-      "@id" : "http://purl.org/dc/terms/issued",
-      "@type" : "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "creator" : {
-      "@id" : "http://purl.org/dc/terms/creator",
-      "@type" : "@id"
-    },
-    "" : "http://example.org#",
-    "duv" : "http://www.w3.org/ns/duv#",
-    "pav" : "http://purl.org/pav/",
-    "owl" : "http://www.w3.org/2002/07/owl#",
-    "fabio" : "http://purl.org/spar/fabio/",
-    "disco" : "http://rdf-vocabulary.ddialliance.org/discovery#",
-    "xsd" : "http://www.w3.org/2001/XMLSchema#",
-    "dqv" : "http://www.w3.org/ns/dqv#",
-    "voaf" : "http://purl.org/vocommons/voaf#",
-    "skos" : "http://www.w3.org/2004/02/skos/core#",
-    "biro" : "http://purl.org/spar/biro/",
-    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-    "frbr" : "http://purl.org/vocab/frbr/core#",
-    "cito" : "http://purl.org/spar/cito#",
-    "oa" : "http://www.w3.org/ns/oa#",
-    "dct" : "http://purl.org/dc/terms/",
-    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "vann" : "http://purl.org/vocab/vann/",
-    "dcat" : "http://www.w3.org/ns/dcat#",
-    "foaf" : "http://xmlns.com/foaf/0.1/"
-  }
+      <pre  class="schema json-ld">
+{  
+   "@graph":[  
+      {  
+         "@id":":memo-a-expression",
+         "@type":"fabio:PolicyDocument",
+         "part":":reference-to-stops-dataset"
+      },
+      {  
+         "@id":":reference-to-stops-dataset",
+         "@type":"biro:BibliographicReference",
+         "dct:bibliographicCitation":"MyCity Bus Association. Bus stops of MyCity. 1.0 version. Transport Agency, 2015 [publisher,distributor]. doi:10.0902/1975.16",
+         "references":":stops-2015-05-05"
+      },
+      {  
+         "@id":":stops-2015-05-05",
+         "@type":"dcat:Dataset",
+         "version":"1.0",
+         "created":"2015-05-05",
+         "creator":":bus-association-mycity",
+         "identifier":"http://dx.doi.org/10.0902/1975.16",
+         "issued":"2015-05-05",
+         "publisher":":transport-agency-mycity",
+         "title":"Bus stops of MyCity",
+         "isReferencedBy":":reference-to-stops-dataset",
+         "fundedBy":":bus-association-mycity",
+         "distribution":":stops-2015-05-05-csv",
+         "hasDistributor":":transport-agency-mycity"
+      },
+      {  
+         "@id":":stops-memorandum",
+         "@type":"fabio:InstructionalWork",
+         "realization":":memo-a-expression"
+      }
+   ],
+   "@context":{  
+      "identifier":{  
+         "@id":"http://purl.org/dc/terms/identifier",
+         "@type":"http://www.w3.org/2001/XMLSchema#anyURI"
+      },
+      "created":{  
+         "@id":"http://purl.org/dc/terms/created",
+         "@type":"http://www.w3.org/2001/XMLSchema#date"
+      },
+      "fundedBy":{  
+         "@id":"http://rdf-vocabulary.ddialliance.org/discovery#fundedBy",
+         "@type":"@id"
+      },
+      "publisher":{  
+         "@id":"http://purl.org/dc/terms/publisher",
+         "@type":"@id"
+      },
+      "hasDistributor":{  
+         "@id":"http://www.w3.org/ns/duv#hasDistributor",
+         "@type":"@id"
+      },
+      "title":"http://purl.org/dc/terms/title",
+      "version":"http://purl.org/pav/version",
+      "distribution":{  
+         "@id":"http://www.w3.org/ns/dcat#distribution",
+         "@type":"@id"
+      },
+      "isReferencedBy":{  
+         "@id":"http://purl.org/spar/biro/isReferencedBy",
+         "@type":"@id"
+      },
+      "issued":{  
+         "@id":"http://purl.org/dc/terms/issued",
+         "@type":"http://www.w3.org/2001/XMLSchema#date"
+      },
+      "creator":{  
+         "@id":"http://purl.org/dc/terms/creator",
+         "@type":"@id"
+      },
+      "realization":{  
+         "@id":"http://purl.org/vocab/frbr/core#realization",
+         "@type":"@id"
+      },
+      "part":{  
+         "@id":"http://purl.org/vocab/frbr/core#part",
+         "@type":"@id"
+      },
+      "bibliographicCitation":{  
+         "@id":"http://purl.org/dc/terms/bibliographicCitation",
+         "@type":"http://www.w3.org/2001/XMLSchema#string"
+      },
+      "references":{  
+         "@id":"http://purl.org/spar/biro/references",
+         "@type":"@id"
+      },
+      "":"http://example.org#",
+      "duv":"http://www.w3.org/ns/duv#",
+      "pav":"http://purl.org/pav/",
+      "owl":"http://www.w3.org/2002/07/owl#",
+      "fabio":"http://purl.org/spar/fabio/",
+      "disco":"http://rdf-vocabulary.ddialliance.org/discovery#",
+      "xsd":"http://www.w3.org/2001/XMLSchema#",
+      "dqv":"http://www.w3.org/ns/dqv#",
+      "voaf":"http://purl.org/vocommons/voaf#",
+      "skos":"http://www.w3.org/2004/02/skos/core#",
+      "biro":"http://purl.org/spar/biro/",
+      "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
+      "frbr":"http://purl.org/vocab/frbr/core#",
+      "oa":"http://www.w3.org/ns/oa#",
+      "dct":"http://purl.org/dc/terms/",
+      "rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "vann":"http://purl.org/vocab/vann/",
+      "dcat":"http://www.w3.org/ns/dcat#",
+      "foaf":"http://xmlns.com/foaf/0.1/"
+   }
 }
-
       </pre>
       <p  id="ex2"> Example 2 - Citation: A memorandum that gives more insights
         about the dataset <code>stops-2015-05-05</code>.</p>
       <pre  class="schema turtle">      :stops-2015-05-05 
         a dcat:Dataset ;
         dct:title "Bus stops of MyCity" ;
-        dct:identifier &lt;http://dx.doi.org/10.0902/1975.16&gt;^^xsd:anyURI    ;
+        dct:identifier "&lt;http://dx.doi.org/10.0902/1975.16&gt;"^^xsd:anyURI    ;
         dct:issued "2015-05-05"^^xsd:date ;
         pav:version "1.0" ;
         dct:publisher :transport-agency-mycity ;
@@ -1439,8 +1484,8 @@ pre red { color: red;
         duv:hasDistributor :transport-agency-mycity ; 
         disco:fundedBy :bus-association-mycity ;
         dct:created "2015-05-05"^^xsd:date ;
-        dcat:distribution :stops-2015-05-05.csv ;
-        biro:isReferencedBy :stops-memorandum 
+        dcat:distribution :stops-2015-05-05-csv ;
+        biro:isReferencedBy :reference-to-stops-dataset 
         .
 
 :stops-memorandum
@@ -1458,119 +1503,138 @@ pre red { color: red;
         biro:references :stops-2015-05-05 
         .   </pre>
       <pre  class="schema json-ld">      
-{
-  "@graph" : [ {
-    "@id" : ":memo-a-expression",
-    "@type" : "fabio:PolicyDocument",
-    "part" : ":reference-to-stops-dataset"
-  }, {
-    "@id" : ":reference-to-stops-dataset",
-    "@type" : "biro:BibliographicReference",
-    "dct:bibliographicCitation" : "MyCity Bus Association. Bus stops of MyCity. 1.0 version. Transport Agency, 2015 [publisher,distributor]. doi:10.0902/1975.16",
-    "references" : ":stops-2015-05-05"
-  }, {
-    "@id" : ":stops-2015-05-05",
-    "@type" : "dcat:Dataset",
-    "version" : "1.0",
-    "created" : "2015-05-05",
-    "creator" : ":bus-association-mycity",
-    "identifier" : "http://dx.doi.org/10.0902/1975.16",
-    "issued" : "2015-05-05",
-    "publisher" : ":transport-agency-mycity",
-    "title" : "Bus stops of MyCity",
-    "isReferencedBy" : ":stops-memorandum",
-    "fundedBy" : ":bus-association-mycity",
-    "distribution" : ":stops-2015-05-05.csv",
-    "hasDistributor" : ":transport-agency-mycity"
-  }, {
-    "@id" : ":stops-memorandum",
-    "@type" : "fabio:InstructionalWork",
-    "realization" : ":memo-a-expression"
-  } ],
-  "@context" : {
-    "identifier" : {
-      "@id" : "http://purl.org/dc/terms/identifier",
-      "@type" : "@id"
-    },
-    "created" : {
-      "@id" : "http://purl.org/dc/terms/created",
-      "@type" : "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "fundedBy" : {
-      "@id" : "http://rdf-vocabulary.ddialliance.org/discovery#fundedBy",
-      "@type" : "@id"
-    },
-    "publisher" : {
-      "@id" : "http://purl.org/dc/terms/publisher",
-      "@type" : "@id"
-    },
-    "hasDistributor" : {
-      "@id" : "http://www.w3.org/ns/duv#hasDistributor",
-      "@type" : "@id"
-    },
-    "title" : "http://purl.org/dc/terms/title",
-    "version" : "http://purl.org/pav/version",
-    "distribution" : {
-      "@id" : "http://www.w3.org/ns/dcat#distribution",
-      "@type" : "@id"
-    },
-    "isReferencedBy" : {
-      "@id" : "http://purl.org/spar/biro/isReferencedBy",
-      "@type" : "@id"
-    },
-    "issued" : {
-      "@id" : "http://purl.org/dc/terms/issued",
-      "@type" : "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "creator" : {
-      "@id" : "http://purl.org/dc/terms/creator",
-      "@type" : "@id"
-    },
-    "realization" : {
-      "@id" : "http://purl.org/vocab/frbr/core#realization",
-      "@type" : "@id"
-    },
-    "part" : {
-      "@id" : "http://purl.org/vocab/frbr/core#part",
-      "@type" : "@id"
-    },
-    "bibliographicCitation" : {
-      "@id" : "http://purl.org/dc/terms/bibliographicCitation",
-      "@type" : "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "references" : {
-      "@id" : "http://purl.org/spar/biro/references",
-      "@type" : "@id"
-    },
-    "" : "http://example.org#",
-    "duv" : "http://www.w3.org/ns/duv#",
-    "pav" : "http://purl.org/pav/",
-    "owl" : "http://www.w3.org/2002/07/owl#",
-    "fabio" : "http://purl.org/spar/fabio/",
-    "disco" : "http://rdf-vocabulary.ddialliance.org/discovery#",
-    "xsd" : "http://www.w3.org/2001/XMLSchema#",
-    "dqv" : "http://www.w3.org/ns/dqv#",
-    "voaf" : "http://purl.org/vocommons/voaf#",
-    "skos" : "http://www.w3.org/2004/02/skos/core#",
-    "biro" : "http://purl.org/spar/biro/",
-    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-    "frbr" : "http://purl.org/vocab/frbr/core#",
-    "oa" : "http://www.w3.org/ns/oa#",
-    "dct" : "http://purl.org/dc/terms/",
-    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "vann" : "http://purl.org/vocab/vann/",
-    "dcat" : "http://www.w3.org/ns/dcat#",
-    "foaf" : "http://xmlns.com/foaf/0.1/"
-  }
-}
-
+[  
+   {  
+      "@id":"http://example.org#bus-association-mycity"
+   },
+   {  
+      "@id":"http://example.org#memo-a-expression",
+      "@type":[  
+         "http://purl.org/spar/fabio/PolicyDocument"
+      ],
+      "http://purl.org/vocab/frbr/core#part":[  
+         {  
+            "@id":"http://example.org#reference-to-stops-dataset"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#reference-to-stops-dataset",
+      "@type":[  
+         "http://purl.org/spar/biro/BibliographicReference"
+      ],
+      "http://purl.org/dc/terms/bibliographicCitation":[  
+         {  
+            "@value":"MyCity Bus Association. Bus stops of MyCity. 1.0 version. Transport Agency, 2015 [publisher,distributor]. doi:10.0902/1975.16"
+         }
+      ],
+      "http://purl.org/spar/biro/references":[  
+         {  
+            "@id":"http://example.org#stops-2015-05-05"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#stops-2015-05-05",
+      "@type":[  
+         "http://www.w3.org/ns/dcat#Dataset"
+      ],
+      "http://purl.org/dc/terms/title":[  
+         {  
+            "@value":"Bus stops of MyCity"
+         }
+      ],
+      "http://purl.org/dc/terms/identifier":[  
+         {  
+            "@value":"<http://dx.doi.org/10.0902/1975.16>",
+            "@type":"http://www.w3.org/2001/XMLSchema#anyURI"
+         }
+      ],
+      "http://purl.org/dc/terms/issued":[  
+         {  
+            "@value":"2015-05-05",
+            "@type":"http://www.w3.org/2001/XMLSchema#date"
+         }
+      ],
+      "http://pav-ontology.github.io/pav/version":[  
+         {  
+            "@value":"1.0"
+         }
+      ],
+      "http://purl.org/dc/terms/publisher":[  
+         {  
+            "@id":"http://example.org#transport-agency-mycity"
+         }
+      ],
+      "http://purl.org/dc/terms/creator":[  
+         {  
+            "@id":"http://example.org#bus-association-mycity"
+         }
+      ],
+      "http://www.w3.org/ns/duv#hasDistributor":[  
+         {  
+            "@id":"http://example.org#transport-agency-mycity"
+         }
+      ],
+      "http://rdf-vocabulary.ddialliance.org/discovery#fundedBy":[  
+         {  
+            "@id":"http://example.org#bus-association-mycity"
+         }
+      ],
+      "http://purl.org/dc/terms/created":[  
+         {  
+            "@value":"2015-05-05",
+            "@type":"http://www.w3.org/2001/XMLSchema#date"
+         }
+      ],
+      "http://www.w3.org/ns/dcat#distribution":[  
+         {  
+            "@id":"http://example.org#stops-2015-05-05-csv"
+         }
+      ],
+      "http://purl.org/spar/biro/isReferencedBy":[  
+         {  
+            "@id":"http://example.org#reference-to-stops-dataset"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#stops-2015-05-05-csv"
+   },
+   {  
+      "@id":"http://example.org#stops-memorandum",
+      "@type":[  
+         "http://purl.org/spar/fabio/InstructionalWork"
+      ],
+      "http://purl.org/vocab/frbr/core#realization":[  
+         {  
+            "@id":"http://example.org#memo-a-expression"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#transport-agency-mycity"
+   },
+   {  
+      "@id":"http://purl.org/spar/biro/BibliographicReference"
+   },
+   {  
+      "@id":"http://purl.org/spar/fabio/InstructionalWork"
+   },
+   {  
+      "@id":"http://purl.org/spar/fabio/PolicyDocument"
+   },
+   {  
+      "@id":"http://www.w3.org/ns/dcat#Dataset"
+   }
+]
       </pre>
       <p  id="ex2"> Example 3 - Citation: A research paper that has a reference
         to the dataset <code>stops-2015-05-05</code>.</p>
       <pre  class="schema turtle">:stops-2015-05-05 
         a dcat:Dataset ;
         dct:title "Bus stops of MyCity" ;
-        dct:identifier &lt;http://dx.doi.org/10.0902/1975.16&gt;^^xsd:anyURI  ;
+        dct:identifier "&lt;http://dx.doi.org/10.0902/1975.16&gt;"^^xsd:anyURI  ;
         dct:issued "2015-05-05"^^xsd:date ;
         pav:version "1.0" ;
         dct:publisher :transport-agency-mycity ;
@@ -1578,9 +1642,8 @@ pre red { color: red;
         duv:hasDistributor :transport-agency-mycity ; 
         disco:fundedBy :bus-association-mycity ;
         dct:created "2015-05-05"^^xsd:date ;
-        dcat:distribution :stops-2015-05-05.csv ;
-        biro:isReferencedBy :stops-memorandum ;
-        biro:isReferencedBy :stops-paper 
+        dcat:distribution :stops-2015-05-05-csv ;
+        biro:isReferencedBy :reference-to-stops-dataset 
         .
 
 :stops-paper
@@ -1600,119 +1663,137 @@ pre red { color: red;
 
       </pre>
       <pre  class="schema json-ld">      
-{
-  "@graph" : [ {
-    "@id" : ":paper-a-expression",
-    "@type" : "fabio:JournalArticle",
-    "part" : ":reference-to-stops-dataset"
-  }, {
-    "@id" : ":reference-to-stops-dataset",
-    "@type" : "biro:BibliographicReference",
-    "dct:bibliographicCitation" : "MyCity Bus Association. Bus stops of MyCity. 1.0 version. Transport Agency, 2015 [publisher,distributor]. doi:10.0902/1975.16",
-    "references" : ":stops-2015-05-05"
-  }, {
-    "@id" : ":stops-2015-05-05",
-    "@type" : "dcat:Dataset",
-    "version" : "1.0",
-    "created" : "2015-05-05",
-    "creator" : ":bus-association-mycity",
-    "identifier" : "http://dx.doi.org/10.0902/1975.16",
-    "issued" : "2015-05-05",
-    "publisher" : ":transport-agency-mycity",
-    "title" : "Bus stops of MyCity",
-    "isReferencedBy" : [ ":stops-paper", ":stops-memorandum" ],
-    "fundedBy" : ":bus-association-mycity",
-    "distribution" : ":stops-2015-05-05.csv",
-    "hasDistributor" : ":transport-agency-mycity"
-  }, {
-    "@id" : ":stops-paper",
-    "@type" : "fabio:ResearchPaper",
-    "realization" : ":paper-a-expression"
-  } ],
-  "@context" : {
-    "identifier" : {
-      "@id" : "http://purl.org/dc/terms/identifier",
-      "@type" : "@id"
-    },
-    "created" : {
-      "@id" : "http://purl.org/dc/terms/created",
-      "@type" : "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "fundedBy" : {
-      "@id" : "http://rdf-vocabulary.ddialliance.org/discovery#fundedBy",
-      "@type" : "@id"
-    },
-    "publisher" : {
-      "@id" : "http://purl.org/dc/terms/publisher",
-      "@type" : "@id"
-    },
-    "hasDistributor" : {
-      "@id" : "http://www.w3.org/ns/duv#hasDistributor",
-      "@type" : "@id"
-    },
-    "title" : "http://purl.org/dc/terms/title",
-    "version" : "http://purl.org/pav/version",
-    "isReferencedBy" : {
-      "@id" : "http://purl.org/spar/biro/isReferencedBy",
-      "@type" : "@id"
-    },
-    "distribution" : {
-      "@id" : "http://www.w3.org/ns/dcat#distribution",
-      "@type" : "@id"
-    },
-    "issued" : {
-      "@id" : "http://purl.org/dc/terms/issued",
-      "@type" : "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "creator" : {
-      "@id" : "http://purl.org/dc/terms/creator",
-      "@type" : "@id"
-    },
-    "realization" : {
-      "@id" : "http://purl.org/vocab/frbr/core#realization",
-      "@type" : "@id"
-    },
-    "part" : {
-      "@id" : "http://purl.org/vocab/frbr/core#part",
-      "@type" : "@id"
-    },
-    "bibliographicCitation" : {
-      "@id" : "http://purl.org/dc/terms/bibliographicCitation",
-      "@type" : "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "references" : {
-      "@id" : "http://purl.org/spar/biro/references",
-      "@type" : "@id"
-    },
-    "" : "http://example.org#",
-    "duv" : "http://www.w3.org/ns/duv#",
-    "pav" : "http://purl.org/pav/",
-    "owl" : "http://www.w3.org/2002/07/owl#",
-    "fabio" : "http://purl.org/spar/fabio/",
-    "disco" : "http://rdf-vocabulary.ddialliance.org/discovery#",
-    "xsd" : "http://www.w3.org/2001/XMLSchema#",
-    "dqv" : "http://www.w3.org/ns/dqv#",
-    "voaf" : "http://purl.org/vocommons/voaf#",
-    "skos" : "http://www.w3.org/2004/02/skos/core#",
-    "biro" : "http://purl.org/spar/biro/",
-    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-    "frbr" : "http://purl.org/vocab/frbr/core#",
-    "oa" : "http://www.w3.org/ns/oa#",
-    "dct" : "http://purl.org/dc/terms/",
-    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "vann" : "http://purl.org/vocab/vann/",
-    "dcat" : "http://www.w3.org/ns/dcat#",
-    "foaf" : "http://xmlns.com/foaf/0.1/"
-  }
-}
-
+   {  
+      "@id":"http://example.org#bus-association-mycity"
+   },
+   {  
+      "@id":"http://example.org#paper-a-expression",
+      "@type":[  
+         "http://purl.org/spar/fabio/JournalArticle"
+      ],
+      "http://purl.org/vocab/frbr/core#part":[  
+         {  
+            "@id":"http://example.org#reference-to-stops-dataset"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#reference-to-stops-dataset",
+      "@type":[  
+         "http://purl.org/spar/biro/BibliographicReference"
+      ],
+      "http://purl.org/dc/terms/bibliographicCitation":[  
+         {  
+            "@value":"MyCity Bus Association. Bus stops of MyCity. 1.0 version. Transport Agency, 2015 [publisher,distributor]. doi:10.0902/1975.16"
+         }
+      ],
+      "http://purl.org/spar/biro/references":[  
+         {  
+            "@id":"http://example.org#stops-2015-05-05"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#stops-2015-05-05",
+      "@type":[  
+         "http://www.w3.org/ns/dcat#Dataset"
+      ],
+      "http://purl.org/dc/terms/title":[  
+         {  
+            "@value":"Bus stops of MyCity"
+         }
+      ],
+      "http://purl.org/dc/terms/identifier":[  
+         {  
+            "@value":"<http://dx.doi.org/10.0902/1975.16>",
+            "@type":"http://www.w3.org/2001/XMLSchema#anyURI"
+         }
+      ],
+      "http://purl.org/dc/terms/issued":[  
+         {  
+            "@value":"2015-05-05",
+            "@type":"http://www.w3.org/2001/XMLSchema#date"
+         }
+      ],
+      "http://pav-ontology.github.io/pav/version":[  
+         {  
+            "@value":"1.0"
+         }
+      ],
+      "http://purl.org/dc/terms/publisher":[  
+         {  
+            "@id":"http://example.org#transport-agency-mycity"
+         }
+      ],
+      "http://purl.org/dc/terms/creator":[  
+         {  
+            "@id":"http://example.org#bus-association-mycity"
+         }
+      ],
+      "http://www.w3.org/ns/duv#hasDistributor":[  
+         {  
+            "@id":"http://example.org#transport-agency-mycity"
+         }
+      ],
+      "http://rdf-vocabulary.ddialliance.org/discovery#fundedBy":[  
+         {  
+            "@id":"http://example.org#bus-association-mycity"
+         }
+      ],
+      "http://purl.org/dc/terms/created":[  
+         {  
+            "@value":"2015-05-05",
+            "@type":"http://www.w3.org/2001/XMLSchema#date"
+         }
+      ],
+      "http://www.w3.org/ns/dcat#distribution":[  
+         {  
+            "@id":"http://example.org#stops-2015-05-05-csv"
+         }
+      ],
+      "http://purl.org/spar/biro/isReferencedBy":[  
+         {  
+            "@id":"http://example.org#reference-to-stops-dataset"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#stops-2015-05-05-csv"
+   },
+   {  
+      "@id":"http://example.org#stops-paper",
+      "@type":[  
+         "http://purl.org/spar/fabio/ResearchPaper"
+      ],
+      "http://purl.org/vocab/frbr/core#realization":[  
+         {  
+            "@id":"http://example.org#paper-a-expression"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#transport-agency-mycity"
+   },
+   {  
+      "@id":"http://purl.org/spar/biro/BibliographicReference"
+   },
+   {  
+      "@id":"http://purl.org/spar/fabio/JournalArticle"
+   },
+   {  
+      "@id":"http://purl.org/spar/fabio/ResearchPaper"
+   },
+   {  
+      "@id":"http://www.w3.org/ns/dcat#Dataset"
+   }
+]
       </pre>
       <p  id="ex4">Example 4 - Feedback:&nbsp; Providing a mechanism for
         consumers to comment and ask the dataset publisher questions. </p>
       <pre  class="schema turtle">:stops-2015-05-05 
         a dcat:Dataset ;
         dct:title "Bus stops of MyCity" ;
-        dct:identifier &lt;http://dx.doi.org/10.0902/1975.16&gt;^^xsd:anyURI   ;
+        dct:identifier "&lt;http://dx.doi.org/10.0902/1975.16&gt;"^^xsd:anyURI   ;
         dct:issued "2015-05-05"^^xsd:date ;
         pav:version "1.0" ;
         dct:publisher :transport-agency-mycity ;
@@ -1720,13 +1801,13 @@ pre red { color: red;
         duv:hasDistributor :transport-agency-mycity ; 
         disco:fundedBy :bus-association-mycity ;
         dct:created "2015-05-05"^^xsd:date ;
-        dcat:distribution :stops-2015-05-05.csv ;
+        dcat:distribution :stops-2015-05-05-csv ;
         duv:hasFeedback :comment1 
         .
 
-:stops-2015-05-05.csv
+:stops-2015-05-05-csv
         a dcat:Distribution ;
-        dcat:downloadURL &lt;http://data.mycity.example.com/transport/dataset/bus/stops-2015-05-05.csv&gt;   ;
+        dcat:downloadURL "&lt;http://data.mycity.example.com/transport/dataset/bus/stops-2015-05-05.csv&gt;";  
         dct:title "CSV distribution of stops-2015-05-05 dataset" ;
         dct:description "CSV distribution of the bus stops dataset of MyCity" ;
         dcat:mediaType "text/csv;charset=UTF-8" ;
@@ -1744,7 +1825,7 @@ pre red { color: red;
 
 :comment2
         a duv:UserFeedback ;
-        oa:hasTarget :stops-2015-05-05.csv;
+        oa:hasTarget :stops-2015-05-05-csv;
         oa:hasBody "Are tab delimited formats also available?"^^xsd:string ;
         oa:motivatedBy oa:questioning;
         dct:creator :localresident 
@@ -1756,136 +1837,199 @@ pre red { color: red;
         .
 
       </pre>
-      <pre  class="schema json-ld">{
-  "@graph" : [ {
-    "@id" : ":comment1",
-    "@type" : "duv:UserFeedback",
-    "creator" : ":localresident",
-    "oa:hasBody" : "This list is missing stop 3",
-    "hasTarget" : ":stops-2015-05-05",
-    "motivatedBy" : "oa:editing"
-  }, {
-    "@id" : ":comment2",
-    "@type" : "duv:UserFeedback",
-    "creator" : ":localresident",
-    "oa:hasBody" : "Are tab delimited formats also available?",
-    "hasTarget" : ":stops-2015-05-05.csv",
-    "motivatedBy" : "oa:questioning"
-  }, {
-    "@id" : ":localresident",
-    "@type" : "foaf:Person",
-    "foaf:Name" : "Alan Law"
-  }, {
-    "@id" : ":stops-2015-05-05",
-    "@type" : "dcat:Dataset",
-    "version" : "1.0",
-    "created" : "2015-05-05",
-    "creator" : ":bus-association-mycity",
-    "identifier" : "http://dx.doi.org/10.0902/1975.16",
-    "issued" : "2015-05-05",
-    "publisher" : ":transport-agency-mycity",
-    "title" : "Bus stops of MyCity",
-    "fundedBy" : ":bus-association-mycity",
-    "distribution" : ":stops-2015-05-05.csv",
-    "hasDistributor" : ":transport-agency-mycity",
-    "hasFeedback" : ":comment1"
-  }, {
-    "@id" : ":stops-2015-05-05.csv",
-    "@type" : "dcat:Distribution",
-    "description" : "CSV distribution of the bus stops dataset of MyCity",
-    "license" : "http://creativecommons.org/licenses/by-sa/3.0/",
-    "title" : "CSV distribution of stops-2015-05-05 dataset",
-    "downloadURL" : "http://data.mycity.example.com/transport/dataset/bus/stops-2015-05-05.csv",
-    "mediaType" : "text/csv;charset=UTF-8",
-    "hasFeedback" : ":comment2"
-  } ],
-  "@context" : {
-    "hasBody" : {
-      "@id" : "http://www.w3.org/ns/oa#hasBody",
-      "@type" : "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "hasTarget" : {
-      "@id" : "http://www.w3.org/ns/oa#hasTarget",
-      "@type" : "@id"
-    },
-    "motivatedBy" : {
-      "@id" : "http://www.w3.org/ns/oa#motivatedBy",
-      "@type" : "@id"
-    },
-    "creator" : {
-      "@id" : "http://purl.org/dc/terms/creator",
-      "@type" : "@id"
-    },
-    "identifier" : {
-      "@id" : "http://purl.org/dc/terms/identifier",
-      "@type" : "@id"
-    },
-    "created" : {
-      "@id" : "http://purl.org/dc/terms/created",
-      "@type" : "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "fundedBy" : {
-      "@id" : "http://rdf-vocabulary.ddialliance.org/discovery#fundedBy",
-      "@type" : "@id"
-    },
-    "hasFeedback" : {
-      "@id" : "http://www.w3.org/ns/duv#hasFeedback",
-      "@type" : "@id"
-    },
-    "publisher" : {
-      "@id" : "http://purl.org/dc/terms/publisher",
-      "@type" : "@id"
-    },
-    "hasDistributor" : {
-      "@id" : "http://www.w3.org/ns/duv#hasDistributor",
-      "@type" : "@id"
-    },
-    "title" : "http://purl.org/dc/terms/title",
-    "version" : "http://purl.org/pav/version",
-    "distribution" : {
-      "@id" : "http://www.w3.org/ns/dcat#distribution",
-      "@type" : "@id"
-    },
-    "issued" : {
-      "@id" : "http://purl.org/dc/terms/issued",
-      "@type" : "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "Name" : {
-      "@id" : "http://xmlns.com/foaf/0.1/Name",
-      "@type" : "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "downloadURL" : {
-      "@id" : "http://www.w3.org/ns/dcat#downloadURL",
-      "@type" : "@id"
-    },
-    "description" : "http://purl.org/dc/terms/description",
-    "mediaType" : "http://www.w3.org/ns/dcat#mediaType",
-    "license" : {
-      "@id" : "http://purl.org/dc/terms/license",
-      "@type" : "@id"
-    },
-    "" : "http://example.org#",
-    "duv" : "http://www.w3.org/ns/duv#",
-    "pav" : "http://purl.org/pav/",
-    "owl" : "http://www.w3.org/2002/07/owl#",
-    "fabio" : "http://purl.org/spar/fabio/",
-    "disco" : "http://rdf-vocabulary.ddialliance.org/discovery#",
-    "xsd" : "http://www.w3.org/2001/XMLSchema#",
-    "dqv" : "http://www.w3.org/ns/dqv#",
-    "voaf" : "http://purl.org/vocommons/voaf#",
-    "skos" : "http://www.w3.org/2004/02/skos/core#",
-    "biro" : "http://purl.org/spar/biro/",
-    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-    "frbr" : "http://purl.org/vocab/frbr/core#",
-    "oa" : "http://www.w3.org/ns/oa#",
-    "dct" : "http://purl.org/dc/terms/",
-    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "vann" : "http://purl.org/vocab/vann/",
-    "dcat" : "http://www.w3.org/ns/dcat#",
-    "foaf" : "http://xmlns.com/foaf/0.1/"
-  }
-}
-
+      <pre  class="schema json-ld">
+[  
+   {  
+      "@id":"http://creativecommons.org/licenses/by-sa/3.0/"
+   },
+   {  
+      "@id":"http://example.org#bus-association-mycity"
+   },
+   {  
+      "@id":"http://example.org#comment1",
+      "@type":[  
+         "http://www.w3.org/ns/duv#UserFeedback"
+      ],
+      "http://www.w3.org/ns/oa#hasBody":[  
+         {  
+            "@value":"This list is missing stop 3"
+         }
+      ],
+      "http://www.w3.org/ns/oa#hasTarget":[  
+         {  
+            "@id":"http://example.org#stops-2015-05-05"
+         }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy":[  
+         {  
+            "@id":"http://www.w3.org/ns/oa#editing"
+         }
+      ],
+      "http://purl.org/dc/terms/creator":[  
+         {  
+            "@id":"http://example.org#localresident"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#comment2",
+      "@type":[  
+         "http://www.w3.org/ns/duv#UserFeedback"
+      ],
+      "http://www.w3.org/ns/oa#hasTarget":[  
+         {  
+            "@id":"http://example.org#stops-2015-05-05-csv"
+         }
+      ],
+      "http://www.w3.org/ns/oa#hasBody":[  
+         {  
+            "@value":"Are tab delimited formats also available?"
+         }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy":[  
+         {  
+            "@id":"http://www.w3.org/ns/oa#questioning"
+         }
+      ],
+      "http://purl.org/dc/terms/creator":[  
+         {  
+            "@id":"http://example.org#localresident"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#localresident",
+      "@type":[  
+         "http://xmlns.com/foaf/0.1/Person"
+      ],
+      "http://xmlns.com/foaf/0.1/Name":[  
+         {  
+            "@value":"Alan Law"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#stops-2015-05-05",
+      "@type":[  
+         "http://www.w3.org/ns/dcat#Dataset"
+      ],
+      "http://purl.org/dc/terms/title":[  
+         {  
+            "@value":"Bus stops of MyCity"
+         }
+      ],
+      "http://purl.org/dc/terms/identifier":[  
+         {  
+            "@value":"<http://dx.doi.org/10.0902/1975.16>",
+            "@type":"http://www.w3.org/2001/XMLSchema#anyURI"
+         }
+      ],
+      "http://purl.org/dc/terms/issued":[  
+         {  
+            "@value":"2015-05-05",
+            "@type":"http://www.w3.org/2001/XMLSchema#date"
+         }
+      ],
+      "http://pav-ontology.github.io/pav/version":[  
+         {  
+            "@value":"1.0"
+         }
+      ],
+      "http://purl.org/dc/terms/publisher":[  
+         {  
+            "@id":"http://example.org#transport-agency-mycity"
+         }
+      ],
+      "http://purl.org/dc/terms/creator":[  
+         {  
+            "@id":"http://example.org#bus-association-mycity"
+         }
+      ],
+      "http://www.w3.org/ns/duv#hasDistributor":[  
+         {  
+            "@id":"http://example.org#transport-agency-mycity"
+         }
+      ],
+      "http://rdf-vocabulary.ddialliance.org/discovery#fundedBy":[  
+         {  
+            "@id":"http://example.org#bus-association-mycity"
+         }
+      ],
+      "http://purl.org/dc/terms/created":[  
+         {  
+            "@value":"2015-05-05",
+            "@type":"http://www.w3.org/2001/XMLSchema#date"
+         }
+      ],
+      "http://www.w3.org/ns/dcat#distribution":[  
+         {  
+            "@id":"http://example.org#stops-2015-05-05-csv"
+         }
+      ],
+      "http://www.w3.org/ns/duv#hasFeedback":[  
+         {  
+            "@id":"http://example.org#comment1"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#stops-2015-05-05-csv",
+      "@type":[  
+         "http://www.w3.org/ns/dcat#Distribution"
+      ],
+      "http://www.w3.org/ns/dcat#downloadURL":[  
+         {  
+            "@value":"<http://data.mycity.example.com/transport/dataset/bus/stops-2015-05-05.csv>"
+         }
+      ],
+      "http://purl.org/dc/terms/title":[  
+         {  
+            "@value":"CSV distribution of stops-2015-05-05 dataset"
+         }
+      ],
+      "http://purl.org/dc/terms/description":[  
+         {  
+            "@value":"CSV distribution of the bus stops dataset of MyCity"
+         }
+      ],
+      "http://www.w3.org/ns/dcat#mediaType":[  
+         {  
+            "@value":"text/csv;charset=UTF-8"
+         }
+      ],
+      "http://purl.org/dc/terms/license":[  
+         {  
+            "@id":"http://creativecommons.org/licenses/by-sa/3.0/"
+         }
+      ],
+      "http://www.w3.org/ns/duv#hasFeedback":[  
+         {  
+            "@id":"http://example.org#comment2"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#transport-agency-mycity"
+   },
+   {  
+      "@id":"http://www.w3.org/ns/dcat#Dataset"
+   },
+   {  
+      "@id":"http://www.w3.org/ns/dcat#Distribution"
+   },
+   {  
+      "@id":"http://www.w3.org/ns/duv#UserFeedback"
+   },
+   {  
+      "@id":"http://www.w3.org/ns/oa#editing"
+   },
+   {  
+      "@id":"http://www.w3.org/ns/oa#questioning"
+   },
+   {  
+      "@id":"http://xmlns.com/foaf/0.1/Person"
+   }
+]
       </pre>
       <p  id="ex5">Example 5 - Feedback:&nbsp; A rating feedback provided by a
         dataset consumer. To describe possible values for rating, the data
@@ -1894,7 +2038,7 @@ pre red { color: red;
       <pre  class="schema turtle">:stops-2015-05-05 
         a dcat:Dataset ;
         dct:title "Bus stops of MyCity" ;
-        dct:identifier &lt;http://dx.doi.org/10.0902/1975.16&gt;^^xsd:anyURI  ;
+        dct:identifier "&lt;http://dx.doi.org/10.0902/1975.16&gt;"^^xsd:anyURI  ;
         dct:issued "2015-05-05"^^xsd:date ;
         pav:version "1.0" ;
         dct:publisher :transport-agency-mycity ;
@@ -1902,7 +2046,7 @@ pre red { color: red;
         duv:hasDistributor :transport-agency-mycity ; 
         disco:fundedBy :bus-association-mycity ;
         dct:created "2015-05-05"^^xsd:date ;
-        dcat:distribution :stops-2015-05-05.csv ;
+        dcat:distribution :stops-2015-05-05-csv ;
         duv:hasFeedback :rating1
         .
 
@@ -1939,153 +2083,204 @@ pre red { color: red;
       skos:prefLabel "A set of values to rate datasets and distributions." ;
       .
       </pre>
-      <pre  class="schema json-ld">{
-  "@graph" : [ {
-    "@id" : ":bad",
-    "@type" : "skos:Concept",
-    "inScheme" : ":rating",
-    "prefLabel" : [ {
-      "@language" : "en",
-      "@value" : "bad"
-    }, {
-      "@language" : "pt",
-      "@value" : "ruim"
-    } ]
-  }, {
-    "@id" : ":excellent",
-    "@type" : "skos:Concept",
-    "inScheme" : ":rating",
-    "prefLabel" : [ {
-      "@language" : "en",
-      "@value" : "excellent"
-    }, {
-      "@language" : "pt",
-      "@value" : "excelente"
-    } ]
-  }, {
-    "@id" : ":good",
-    "@type" : "skos:Concept",
-    "inScheme" : ":rating",
-    "prefLabel" : [ {
-      "@language" : "en",
-      "@value" : "good"
-    }, {
-      "@language" : "pt",
-      "@value" : "boa"
-    } ]
-  }, {
-    "@id" : ":rating",
-    "@type" : "skos:ConceptScheme",
-    "prefLabel" : "A set of values to rate datasets and distributions."
-  }, {
-    "@id" : ":rating1",
-    "@type" : "duv:RatingFeedback",
-    "hasBody" : ":good",
-    "hasTarget" : ":stops-2015-05-05",
-    "motivatedBy" : "oa:assessing"
-  }, {
-    "@id" : ":stops-2015-05-05",
-    "@type" : "dcat:Dataset",
-    "version" : "1.0",
-    "created" : "2015-05-05",
-    "creator" : ":bus-association-mycity",
-    "identifier" : "http://dx.doi.org/10.0902/1975.16",
-    "issued" : "2015-05-05",
-    "publisher" : ":transport-agency-mycity",
-    "title" : "Bus stops of MyCity",
-    "fundedBy" : ":bus-association-mycity",
-    "distribution" : ":stops-2015-05-05.csv",
-    "hasDistributor" : ":transport-agency-mycity",
-    "hasFeedback" : ":rating1:"
-  } ],
-  "@context" : {
-    "inScheme" : {
-      "@id" : "http://www.w3.org/2004/02/skos/core#inScheme",
-      "@type" : "@id"
-    },
-    "prefLabel" : "http://www.w3.org/2004/02/skos/core#prefLabel",
-    "identifier" : {
-      "@id" : "http://purl.org/dc/terms/identifier",
-      "@type" : "@id"
-    },
-    "created" : {
-      "@id" : "http://purl.org/dc/terms/created",
-      "@type" : "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "fundedBy" : {
-      "@id" : "http://rdf-vocabulary.ddialliance.org/discovery#fundedBy",
-      "@type" : "@id"
-    },
-    "publisher" : {
-      "@id" : "http://purl.org/dc/terms/publisher",
-      "@type" : "@id"
-    },
-    "hasDistributor" : {
-      "@id" : "http://www.w3.org/ns/duv#hasDistributor",
-      "@type" : "@id"
-    },
-    "title" : "http://purl.org/dc/terms/title",
-    "version" : "http://purl.org/pav/version",
-    "hasFeedback" : {
-      "@id" : "http://www.w3.org/ns/duv#hasFeedback",
-      "@type" : "@id"
-    },
-    "distribution" : {
-      "@id" : "http://www.w3.org/ns/dcat#distribution",
-      "@type" : "@id"
-    },
-    "issued" : {
-      "@id" : "http://purl.org/dc/terms/issued",
-      "@type" : "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "creator" : {
-      "@id" : "http://purl.org/dc/terms/creator",
-      "@type" : "@id"
-    },
-    "hasBody" : {
-      "@id" : "http://www.w3.org/ns/oa#hasBody",
-      "@type" : "@id"
-    },
-    "hasTarget" : {
-      "@id" : "http://www.w3.org/ns/oa#hasTarget",
-      "@type" : "@id"
-    },
-    "motivatedBy" : {
-      "@id" : "http://www.w3.org/ns/oa#motivatedBy",
-      "@type" : "@id"
-    },
-    "" : "http://example.org#",
-    "duv" : "http://www.w3.org/ns/duv#",
-    "pav" : "http://purl.org/pav/",
-    "owl" : "http://www.w3.org/2002/07/owl#",
-    "fabio" : "http://purl.org/spar/fabio/",
-    "disco" : "http://rdf-vocabulary.ddialliance.org/discovery#",
-    "xsd" : "http://www.w3.org/2001/XMLSchema#",
-    "dqv" : "http://www.w3.org/ns/dqv#",
-    "voaf" : "http://purl.org/vocommons/voaf#",
-    "skos" : "http://www.w3.org/2004/02/skos/core#",
-    "biro" : "http://purl.org/spar/biro/",
-    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-    "frbr" : "http://purl.org/vocab/frbr/core#",
-    "oa" : "http://www.w3.org/ns/oa#",
-    "dct" : "http://purl.org/dc/terms/",
-    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "vann" : "http://purl.org/vocab/vann/",
-    "dcat" : "http://www.w3.org/ns/dcat#",
-    "foaf" : "http://xmlns.com/foaf/0.1/"
-  }
-}
-      
+      <pre  class="schema json-ld">
+     [  
+   {  
+      "@id":"http://example.org#bad",
+      "@type":[  
+         "http://www.w3.org/2004/02/skos/core#Concept"
+      ],
+      "http://www.w3.org/2004/02/skos/core#inScheme":[  
+         {  
+            "@id":"http://example.org#rating"
+         }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel":[  
+         {  
+            "@value":"bad",
+            "@language":"en"
+         },
+         {  
+            "@value":"ruim",
+            "@language":"pt"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#bus-association-mycity"
+   },
+   {  
+      "@id":"http://example.org#excellent",
+      "@type":[  
+         "http://www.w3.org/2004/02/skos/core#Concept"
+      ],
+      "http://www.w3.org/2004/02/skos/core#inScheme":[  
+         {  
+            "@id":"http://example.org#rating"
+         }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel":[  
+         {  
+            "@value":"excellent",
+            "@language":"en"
+         },
+         {  
+            "@value":"excelente",
+            "@language":"pt"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#good",
+      "@type":[  
+         "http://www.w3.org/2004/02/skos/core#Concept"
+      ],
+      "http://www.w3.org/2004/02/skos/core#inScheme":[  
+         {  
+            "@id":"http://example.org#rating"
+         }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel":[  
+         {  
+            "@value":"good",
+            "@language":"en"
+         },
+         {  
+            "@value":"boa",
+            "@language":"pt"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#rating",
+      "@type":[  
+         "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel":[  
+         {  
+            "@value":"A set of values to rate datasets and distributions."
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#rating1",
+      "@type":[  
+         "http://www.w3.org/ns/duv#RatingFeedback"
+      ],
+      "http://www.w3.org/ns/oa#hasBody":[  
+         {  
+            "@id":"http://example.org#good"
+         }
+      ],
+      "http://www.w3.org/ns/oa#hasTarget":[  
+         {  
+            "@id":"http://example.org#stops-2015-05-05"
+         }
+      ],
+      "http://www.w3.org/ns/oa#motivatedBy":[  
+         {  
+            "@id":"http://www.w3.org/ns/oa#assessing"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#stops-2015-05-05",
+      "@type":[  
+         "http://www.w3.org/ns/dcat#Dataset"
+      ],
+      "http://purl.org/dc/terms/title":[  
+         {  
+            "@value":"Bus stops of MyCity"
+         }
+      ],
+      "http://purl.org/dc/terms/identifier":[  
+         {  
+            "@value":"<http://dx.doi.org/10.0902/1975.16>",
+            "@type":"http://www.w3.org/2001/XMLSchema#anyURI"
+         }
+      ],
+      "http://purl.org/dc/terms/issued":[  
+         {  
+            "@value":"2015-05-05",
+            "@type":"http://www.w3.org/2001/XMLSchema#date"
+         }
+      ],
+      "http://pav-ontology.github.io/pav/version":[  
+         {  
+            "@value":"1.0"
+         }
+      ],
+      "http://purl.org/dc/terms/publisher":[  
+         {  
+            "@id":"http://example.org#transport-agency-mycity"
+         }
+      ],
+      "http://purl.org/dc/terms/creator":[  
+         {  
+            "@id":"http://example.org#bus-association-mycity"
+         }
+      ],
+      "http://www.w3.org/ns/duv#hasDistributor":[  
+         {  
+            "@id":"http://example.org#transport-agency-mycity"
+         }
+      ],
+      "http://rdf-vocabulary.ddialliance.org/discovery#fundedBy":[  
+         {  
+            "@id":"http://example.org#bus-association-mycity"
+         }
+      ],
+      "http://purl.org/dc/terms/created":[  
+         {  
+            "@value":"2015-05-05",
+            "@type":"http://www.w3.org/2001/XMLSchema#date"
+         }
+      ],
+      "http://www.w3.org/ns/dcat#distribution":[  
+         {  
+            "@id":"http://example.org#stops-2015-05-05-csv"
+         }
+      ],
+      "http://www.w3.org/ns/duv#hasFeedback":[  
+         {  
+            "@id":"http://example.org#rating1"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#stops-2015-05-05-csv"
+   },
+   {  
+      "@id":"http://example.org#transport-agency-mycity"
+   },
+   {  
+      "@id":"http://www.w3.org/2004/02/skos/core#Concept"
+   },
+   {  
+      "@id":"http://www.w3.org/2004/02/skos/core#ConceptScheme"
+   },
+   {  
+      "@id":"http://www.w3.org/ns/dcat#Dataset"
+   },
+   {  
+      "@id":"http://www.w3.org/ns/duv#RatingFeedback"
+   },
+   {  
+      "@id":"http://www.w3.org/ns/oa#assessing"
+   }
+]
+
+ 
       </pre>
       <p  id="ex6">Example 6 -&nbsp;Dataset Usage:&nbsp; A dataset consumer uses
-        the distribution <code>stops-2015-05-05.csv</code> to produce a
+        the distribution <code>stops-2015-05-05-csv</code> to produce a
         visualization of bus routes from MyCity. A route calculator service was
         used to generate the bus routes (<code>http://example.org/route-calculator</code>).
         The dataset publisher collects this usage and updates the dataset
         metadata with a new property <code>duv:hasUsage </code> .</p>
-      <pre  class="schema turtle">:stops-2015-05-05.csv
+      <pre  class="schema turtle">:stops-2015-05-05-csv
       a dcat:Distribution ;
-      dcat:downloadURL &lt;http://data.mycity.example.com/transport/dataset/bus/stops-2015-05-05.csv&gt;   ;
+      dcat:downloadURL "&lt;http://data.mycity.example.com/transport/dataset/bus/stops-2015-05-05.csv&gt;";
       dct:title "CSV distribution of stops-2015-05-05 dataset" ;
       dct:description "CSV distribution of the bus stops dataset of MyCity" ;
       dcat:mediaType "text/csv;charset=UTF-8" ;
@@ -2097,98 +2292,117 @@ pre red { color: red;
       dct:title "Visualization of MyCity bus routes"^^xsd:string ;
       dct:created "2016-05-05"^^xsd:date ;
       duv:hasUsageTool :route-calculator ;
-      duv:refersTo :stops-2015-05-05.csv 
+      duv:refersTo :stops-2015-05-05-csv 
       .
 
 :route-calculator a duv:UsageTool ;
       dct:title "Route Calculator"^^xsd:string ;
       dct:created "2016-03-04"^^xsd:date ;
-      dct:identifier &lt;http://dx.doi.org/10.0902/1975.16&gt;^^xsd:anyURI    
+      dct:identifier "&lt;http://dx.doi.org/10.0902/1975.16&gt;"^^xsd:anyURI    
       .
 
 </pre>
       <pre  class="schema json-ld">{
-{
-  "@graph" : [ {
-    "@id" : ":route-calculator",
-    "@type" : "duv:UsageTool",
-    "created" : "2016-03-04",
-    "identifier" : "http://dx.doi.org/10.0902/1975.16",
-    "dct:title" : "Route Calculator"
-  }, {
-    "@id" : ":route-vis",
-    "@type" : "duv:Usage",
-    "created" : "2016-05-05",
-    "dct:title" : "Visualization of MyCity bus routes",
-    "hasUsageTool" : ":route-calculator",
-    "refersTo" : ":stops-2015-05-05.csv"
-  }, {
-    "@id" : ":stops-2015-05-05.csv",
-    "@type" : "dcat:Distribution",
-    "description" : "CSV distribution of the bus stops dataset of MyCity",
-    "license" : "http://creativecommons.org/licenses/by-sa/3.0/",
-    "dct:title" : "CSV distribution of stops-2015-05-05 dataset",
-    "downloadURL" : "http://data.mycity.example.com/transport/dataset/bus/stops-2015-05-05.csv",
-    "mediaType" : "text/csv;charset=UTF-8",
-    "hasUsage" : ":route-vis"
-  } ],
-  "@context" : {
-    "title" : {
-      "@id" : "http://purl.org/dc/terms/title",
-      "@type" : "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "created" : {
-      "@id" : "http://purl.org/dc/terms/created",
-      "@type" : "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "identifier" : {
-      "@id" : "http://purl.org/dc/terms/identifier",
-      "@type" : "@id"
-    },
-    "downloadURL" : {
-      "@id" : "http://www.w3.org/ns/dcat#downloadURL",
-      "@type" : "@id"
-    },
-    "description" : "http://purl.org/dc/terms/description",
-    "mediaType" : "http://www.w3.org/ns/dcat#mediaType",
-    "license" : {
-      "@id" : "http://purl.org/dc/terms/license",
-      "@type" : "@id"
-    },
-    "hasUsage" : {
-      "@id" : "http://www.w3.org/ns/duv#hasUsage",
-      "@type" : "@id"
-    },
-    "hasUsageTool" : {
-      "@id" : "http://www.w3.org/ns/duv#hasUsageTool",
-      "@type" : "@id"
-    },
-    "refersTo" : {
-      "@id" : "http://www.w3.org/ns/duv#refersTo",
-      "@type" : "@id"
-    },
-    "" : "http://example.org#",
-    "duv" : "http://www.w3.org/ns/duv#",
-    "pav" : "http://purl.org/pav/",
-    "owl" : "http://www.w3.org/2002/07/owl#",
-    "fabio" : "http://purl.org/spar/fabio/",
-    "disco" : "http://rdf-vocabulary.ddialliance.org/discovery#",
-    "xsd" : "http://www.w3.org/2001/XMLSchema#",
-    "dqv" : "http://www.w3.org/ns/dqv#",
-    "voaf" : "http://purl.org/vocommons/voaf#",
-    "skos" : "http://www.w3.org/2004/02/skos/core#",
-    "biro" : "http://purl.org/spar/biro/",
-    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
-    "frbr" : "http://purl.org/vocab/frbr/core#",
-    "oa" : "http://www.w3.org/ns/oa#",
-    "dct" : "http://purl.org/dc/terms/",
-    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "vann" : "http://purl.org/vocab/vann/",
-    "dcat" : "http://www.w3.org/ns/dcat#",
-    "foaf" : "http://xmlns.com/foaf/0.1/"
-  }
-}
-
+[  
+   {  
+      "@id":"http://creativecommons.org/licenses/by-sa/3.0/"
+   },
+   {  
+      "@id":"http://example.org#route-calculator",
+      "@type":[  
+         "http://www.w3.org/ns/duv#UsageTool"
+      ],
+      "http://purl.org/dc/terms/title":[  
+         {  
+            "@value":"Route Calculator"
+         }
+      ],
+      "http://purl.org/dc/terms/created":[  
+         {  
+            "@value":"2016-03-04",
+            "@type":"http://www.w3.org/2001/XMLSchema#date"
+         }
+      ],
+      "http://purl.org/dc/terms/identifier":[  
+         {  
+            "@value":"<http://dx.doi.org/10.0902/1975.16>",
+            "@type":"http://www.w3.org/2001/XMLSchema#anyURI"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#route-vis",
+      "@type":[  
+         "http://www.w3.org/ns/duv#Usage"
+      ],
+      "http://purl.org/dc/terms/title":[  
+         {  
+            "@value":"Visualization of MyCity bus routes"
+         }
+      ],
+      "http://purl.org/dc/terms/created":[  
+         {  
+            "@value":"2016-05-05",
+            "@type":"http://www.w3.org/2001/XMLSchema#date"
+         }
+      ],
+      "http://www.w3.org/ns/duv#hasUsageTool":[  
+         {  
+            "@id":"http://example.org#route-calculator"
+         }
+      ],
+      "http://www.w3.org/ns/duv#refersTo":[  
+         {  
+            "@id":"http://example.org#stops-2015-05-05-csv"
+         }
+      ]
+   },
+   {  
+      "@id":"http://example.org#stops-2015-05-05-csv",
+      "@type":[  
+         "http://www.w3.org/ns/dcat#Distribution"
+      ],
+      "http://www.w3.org/ns/dcat#downloadURL":[  
+         {  
+            "@value":"<http://data.mycity.example.com/transport/dataset/bus/stops-2015-05-05.csv>"
+         }
+      ],
+      "http://purl.org/dc/terms/title":[  
+         {  
+            "@value":"CSV distribution of stops-2015-05-05 dataset"
+         }
+      ],
+      "http://purl.org/dc/terms/description":[  
+         {  
+            "@value":"CSV distribution of the bus stops dataset of MyCity"
+         }
+      ],
+      "http://www.w3.org/ns/dcat#mediaType":[  
+         {  
+            "@value":"text/csv;charset=UTF-8"
+         }
+      ],
+      "http://purl.org/dc/terms/license":[  
+         {  
+            "@id":"http://creativecommons.org/licenses/by-sa/3.0/"
+         }
+      ],
+      "http://www.w3.org/ns/duv#hasUsage":[  
+         {  
+            "@id":"http://example.org#route-vis"
+         }
+      ]
+   },
+   {  
+      "@id":"http://www.w3.org/ns/dcat#Distribution"
+   },
+   {  
+      "@id":"http://www.w3.org/ns/duv#Usage"
+   },
+   {  
+      "@id":"http://www.w3.org/ns/duv#UsageTool"
+   }
+]
       </pre>
     </section>
     <section  id="conclusion"  class="informative"><br>
